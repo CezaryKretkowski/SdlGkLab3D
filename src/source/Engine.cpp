@@ -16,6 +16,14 @@ void Engine::mainLoop() {
                 for (std::list<KeyListener*>::iterator it = keyFunction.begin(); it != keyFunction.end(); ++it)
                     (*it)->onKeyPressedDown(Event);
             }
+            if(Event.type == SDL_MOUSEMOTION ){
+                for (std::list<MouseListener*>::iterator it = mouseListener.begin(); it != mouseListener.end(); ++it)
+                    (*it)->onMouseMotion(Event);
+            }
+            if(Event.type == SDL_MOUSEBUTTONDOWN  ){
+                for (std::list<MouseListener*>::iterator it = mouseListener.begin(); it != mouseListener.end(); ++it)
+                    (*it)->onMousePressed(Event);
+            }
 
         }
 
@@ -39,6 +47,9 @@ bool Engine::init(char *title, int posX, int posY, int width, int hight, uint32_
     contex=SDL_GL_CreateContext(window);
     mainLoop();
     return true;
+}
+void Engine::addMouseListener(MouseListener *m) {
+    mouseListener.push_front(m);
 }
 void Engine::addKeyListener(KeyListener* k) {
     keyFunction.push_front(k);
