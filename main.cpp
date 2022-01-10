@@ -16,16 +16,29 @@
 #include <stdint.h>
 #include <assert.h>
 #include "src/headers/Engine.h"
+#include "src/headers/MouseListener.h"
 
-class MainWindow:public KeyListener {
+class MainWindow:public KeyListener,public MouseListener{
 public:
     Engine engine;
+    int myszkaX;
+    int myszkaY;
     void onKeyPressedDown(SDL_Event e){
         if(e.key.keysym.sym=='s') {
             engine.clear(255.f,255.f,255.f,255.f);
 
         }
+    }
+    void onMouseMotion(SDL_Event e){
+        myszkaX = e.motion.x;
+        myszkaY = e.motion.y;
 
+    }
+    void onMousePressed(SDL_Event e){
+        if(SDL_BUTTON_LEFT==e.button.button){
+            printf("pos x %d\n",myszkaX);
+            printf("pos y %d\n",myszkaY);
+        }
     }
 };
 
@@ -36,6 +49,7 @@ int main (int ArgCount, char **Args)
       MainWindow *mainWindow=new MainWindow();
 
       mainWindow->engine.addKeyListener(mainWindow);
+      mainWindow->engine.addMouseListener(mainWindow);
       mainWindow->engine.init("Grafika Komputerowa",100,100,800,600,SDL_WINDOW_OPENGL);
 //    u32 WindowFlags = ;
 ////    SDL_Window *Window = SDL_CreateWindow("OpenGL Test", 100, 100, WinWidth, WinHeight, WindowFlags);

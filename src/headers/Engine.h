@@ -10,6 +10,7 @@
 #include <assert.h>
 #include <List>
 #include "KeyListener.h"
+#include "MouseListener.h"
 class Engine {
 private:
     SDL_Window *window;
@@ -18,6 +19,7 @@ private:
     SDL_Event Event;
     void mainLoop();
     std::list<KeyListener*> keyFunction;
+    std::list<MouseListener*> mouseListener;
     SDL_GLContext contex;
 public:
 
@@ -41,6 +43,7 @@ public:
     int getHight() { return hight; }
 
     void addKeyListener(KeyListener *k);
+    void addMouseListener(MouseListener *m);
 
     void clear(float red=0.f,float blue=0.f ,float green=0.f,float alpha=0.f);
 };
