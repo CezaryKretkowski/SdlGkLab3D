@@ -8,9 +8,11 @@
 #include <iostream>
 #include <stdint.h>
 #include <assert.h>
-#include <List>
+#include <list>
 #include "KeyListener.h"
 #include "MouseListener.h"
+#define  FullScreenMode 1
+#define  WindowMode 0
 class Engine {
 private:
     SDL_Window *window;
@@ -21,9 +23,10 @@ private:
     std::list<KeyListener*> keyFunction;
     std::list<MouseListener*> mouseListener;
     SDL_GLContext contex;
+
 public:
 
-    bool init(char* title,int posX,int posY,int width,int hight,uint32_t WindowFlags);
+    bool init(char* title,int posX,int posY,int width,int hight,uint32_t WindowFlags,int mode);
 
     void  setEndFlag(bool end){endFlag=end;}
     void setPosX(int posX) { this->posX = posX; }

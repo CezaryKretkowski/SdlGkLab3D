@@ -1,17 +1,7 @@
 #include <iostream>
 //#define SDL_MAIN_HANDLED
 #include <SDL.h>
-#include <gl/gl.h>
-#include <gl/glu.h>
 
-#include <glm/glm.hpp>
-#include <glm/gtx/transform.hpp>
-#include <glm/gtc/type_ptr.hpp>
-#include <gl/gl.h>
-#include <SDL_opengl.h>
-#include <glm/glm.hpp>
-#include <glm/gtx/transform.hpp>
-#include <glm/gtc/type_ptr.hpp>
 #include <stdio.h>
 #include <stdint.h>
 #include <assert.h>
@@ -50,7 +40,7 @@ int main (int ArgCount, char **Args)
 
       mainWindow->engine.addKeyListener(mainWindow);
       mainWindow->engine.addMouseListener(mainWindow);
-      mainWindow->engine.init("Grafika Komputerowa",100,100,800,600,SDL_WINDOW_OPENGL);
+      mainWindow->engine.init("Grafika Komputerowa",100,100,800,600,SDL_WINDOW_OPENGL,0);
 //    u32 WindowFlags = ;
 ////    SDL_Window *Window = SDL_CreateWindow("OpenGL Test", 100, 100, WinWidth, WinHeight, WindowFlags);
 ////    //assert(Window);
