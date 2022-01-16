@@ -1,31 +1,34 @@
 #include <iostream>
 //#define SDL_MAIN_HANDLED
 #include <SDL.h>
-#include <gl/gl.h>
-#include <gl/glu.h>
 
-#include <glm/glm.hpp>
-#include <glm/gtx/transform.hpp>
-#include <glm/gtc/type_ptr.hpp>
-#include <gl/gl.h>
-#include <SDL_opengl.h>
-#include <glm/glm.hpp>
-#include <glm/gtx/transform.hpp>
-#include <glm/gtc/type_ptr.hpp>
 #include <stdio.h>
 #include <stdint.h>
 #include <assert.h>
 #include "src/headers/Engine.h"
+#include "src/headers/MouseListener.h"
 
-class MainWindow:public KeyListener {
+class MainWindow:public KeyListener,public MouseListener{
 public:
     Engine engine;
+    int myszkaX;
+    int myszkaY;
     void onKeyPressedDown(SDL_Event e){
         if(e.key.keysym.sym=='s') {
             engine.clear(255.f,255.f,255.f,255.f);
 
         }
+    }
+    void onMouseMotion(SDL_Event e){
+        myszkaX = e.motion.x;
+        myszkaY = e.motion.y;
 
+    }
+    void onMousePressed(SDL_Event e){
+        if(SDL_BUTTON_LEFT==e.button.button){
+            printf("pos x %d\n",myszkaX);
+            printf("pos y %d\n",myszkaY);
+        }
     }
 };
 
@@ -36,7 +39,8 @@ int main (int ArgCount, char **Args)
       MainWindow *mainWindow=new MainWindow();
 
       mainWindow->engine.addKeyListener(mainWindow);
-      mainWindow->engine.init("Grafika Komputerowa",100,100,800,600,SDL_WINDOW_OPENGL);
+      mainWindow->engine.addMouseListener(mainWindow);
+      mainWindow->engine.init("Grafika Komputerowa",100,100,800,600,SDL_WINDOW_OPENGL,0);
 //    u32 WindowFlags = ;
 ////    SDL_Window *Window = SDL_CreateWindow("OpenGL Test", 100, 100, WinWidth, WinHeight, WindowFlags);
 ////    //assert(Window);

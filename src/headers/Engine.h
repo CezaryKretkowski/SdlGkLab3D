@@ -8,8 +8,11 @@
 #include <iostream>
 #include <stdint.h>
 #include <assert.h>
-#include <List>
+#include <list>
 #include "KeyListener.h"
+#include "MouseListener.h"
+#define  FullScreenMode 1
+#define  WindowMode 0
 class Engine {
 private:
     SDL_Window *window;
@@ -18,10 +21,12 @@ private:
     SDL_Event Event;
     void mainLoop();
     std::list<KeyListener*> keyFunction;
+    std::list<MouseListener*> mouseListener;
     SDL_GLContext contex;
+
 public:
 
-    bool init(char* title,int posX,int posY,int width,int hight,uint32_t WindowFlags);
+    bool init(char* title,int posX,int posY,int width,int hight,uint32_t WindowFlags,int mode);
 
     void  setEndFlag(bool end){endFlag=end;}
     void setPosX(int posX) { this->posX = posX; }
@@ -41,6 +46,7 @@ public:
     int getHight() { return hight; }
 
     void addKeyListener(KeyListener *k);
+    void addMouseListener(MouseListener *m);
 
     void clear(float red=0.f,float blue=0.f ,float green=0.f,float alpha=0.f);
 };
