@@ -16,7 +16,7 @@ public:
     void onKeyPressedDown(SDL_Event e){
         if(e.key.keysym.sym=='s') {
             engine.clear(255.f,255.f,255.f,255.f);
-
+            puts("dziala");
         }
     }
     void onMouseMotion(SDL_Event e){
@@ -39,8 +39,8 @@ int main (int ArgCount, char **Args)
       MainWindow *mainWindow=new MainWindow();
 
       mainWindow->engine.addKeyListener(mainWindow);
-      mainWindow->engine.addMouseListener(mainWindow);
-      mainWindow->engine.init("Grafika Komputerowa",100,100,800,600,SDL_WINDOW_OPENGL,0);
+      //mainWindow->engine.addMouseListener(mainWindow);
+      mainWindow->engine.init("Grafika Komputerowa",100,100,800,600,SDL_WINDOW_OPENGL,1);
 //    u32 WindowFlags = ;
 ////    SDL_Window *Window = SDL_CreateWindow("OpenGL Test", 100, 100, WinWidth, WinHeight, WindowFlags);
 ////    //assert(Window);
