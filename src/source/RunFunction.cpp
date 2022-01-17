@@ -134,5 +134,5 @@ Render()
     glEnd();
 
     glMatrixMode(GL_MODELVIEW);
-    glRotatef(0.1, 1.0, 1.0, 1.0);
+    //glRotatef(0.1, 1.0, 1.0, 1.0);
 }

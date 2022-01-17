@@ -4,6 +4,9 @@
 #include <SDL_opengl.h>
 #include "../headers/Engine.h"
 #include "../headers/staticFunction.h"
+#include <glm/glm.hpp>
+#include <glm/gtx/transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
 bool Engine::initSDL() {
     if( SDL_Init( SDL_INIT_VIDEO ) < 0 )
     {
@@ -49,7 +52,9 @@ void Engine::mainLoop() {
         SDL_GL_MakeCurrent(window, contex);
         SDL_GetWindowSize(window, &width, &hight);
         glViewport(0, 0, width, hight);
+        changeObservatorPos();
         Render();
+
         SDL_GL_SwapWindow(window);
 
     }
@@ -113,4 +118,15 @@ void Engine::clear() {
     glClear(GL_COLOR_BUFFER_BIT);
     glFinish();	// or glFlush();
 }
+void Engine::changeObservatorPos(){
 
+    glRotatef(lookAngle, 1.0, 1.0, 1.0);
+//    glm::mat4 MatM = glm::translate(glm::vec3(0, 0, -300));
+//    glm::rotate(MatM, glm::radians(lookAngle), glm::vec3(1, 0, 0));
+//    MatM = glm::rotate(MatM, glm::radians(0.f), glm::vec3(0, 1, 0));
+//    // 120 deg rotation:
+//    glm::mat4 MatRot120 = glm::rotate(glm::radians(120.0f), glm::vec3(0, 1, 0));
+//    // Translation +100 on X axis:
+//    glm::mat4 MatTra100 = glm::translate(glm::vec3(100, 0, 0));
+
+}

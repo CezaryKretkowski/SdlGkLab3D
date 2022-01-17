@@ -24,6 +24,8 @@ private:
 
     bool endFlag = false;
 
+    GLfloat lookAngle;
+
     SDL_Event Event;
 
     std::list<KeyListener *> keyFunction;
@@ -69,6 +71,10 @@ public:
     void clear(float red, float blue, float green, float alpha);
 
     void clear();
+
+    void setLookAngle(GLfloat lookAngle){this->lookAngle=lookAngle;}
+    GLfloat getLookAngle(){return lookAngle;}
+    void changeObservatorPos();
 };
 
 #endif //SDLGKLAB3D_ENGINE_H

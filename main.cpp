@@ -14,8 +14,12 @@ public:
     int myszkaX;
     int myszkaY;
     void onKeyPressedDown(SDL_Event e){
+        if(e.key.keysym.sym=='w') {
+            engine.setLookAngle(engine.getLookAngle()+1.0);
+            puts("dziala");
+        }
         if(e.key.keysym.sym=='s') {
-            engine.clear(255.f,255.f,255.f,255.f);
+            engine.setLookAngle(engine.getLookAngle()-1.0);
             puts("dziala");
         }
     }
