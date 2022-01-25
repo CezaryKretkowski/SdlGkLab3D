@@ -12,6 +12,10 @@
 #include <list>
 #include "KeyListener.h"
 #include "MouseListener.h"
+#include "../headers/Primitive/Rectangle.h"
+#include "Component.h"
+
+
 
 #define  FullScreenMode 1
 #define  WindowMode 0
@@ -36,6 +40,10 @@ private:
 
     double backGroundColor[4] = {0.f, 0.f, 0.f, 0.f};
 
+    bool perspective;
+
+    std::list<Component*> components;
+//Metody
     void mainLoop();
 
     bool initSDL();
@@ -64,6 +72,10 @@ public:
 
     int getHight() { return hight; }
 
+    SDL_Window* getWindow(){return window;}
+
+    SDL_GLContext getContext(){return contex;}
+
     void addKeyListener(KeyListener *k);
 
     void addMouseListener(MouseListener *m);
@@ -72,9 +84,16 @@ public:
 
     void clear();
 
-    void setLookAngle(GLfloat lookAngle){this->lookAngle=lookAngle;}
-    GLfloat getLookAngle(){return lookAngle;}
+    void setLookAngle(GLfloat lookAngle) { this->lookAngle = lookAngle; }
+
+    GLfloat getLookAngle() { return lookAngle; }
+
     void changeObservatorPos();
+
+    void add(Component *component);
+
+    void changeObserverPerspective(float fovy,float aspect,float zNear,float zFar);
+    void changeObserverOrto(float left,float right,float bottom,float top,float near_var,float far_var);
 };
 
 #endif //SDLGKLAB3D_ENGINE_H

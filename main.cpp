@@ -7,20 +7,30 @@
 #include <assert.h>
 #include "src/headers/Engine.h"
 #include "src/headers/MouseListener.h"
+#include "src/headers/Component.h"
+#include "src/headers/Primitive/Rectangle.h"
+#include "src/headers/staticFunction.h"
+#include "src/headers/Primitive/PrimitiveRender.h"
 
-class MainWindow:public KeyListener,public MouseListener{
+class MainWindow:public KeyListener,public MouseListener,public Component{
 public:
+
     Engine engine;
     int myszkaX;
     int myszkaY;
+    int width;
+    int hight;
+    std::list<Point3D> list;
+
     void onKeyPressedDown(SDL_Event e){
         if(e.key.keysym.sym=='w') {
             engine.setLookAngle(engine.getLookAngle()+1.0);
-            puts("dziala");
+            //engine.changeObserverPerspective();
+
         }
         if(e.key.keysym.sym=='s') {
             engine.setLookAngle(engine.getLookAngle()-1.0);
-            puts("dziala");
+
         }
     }
     void onMouseMotion(SDL_Event e){
@@ -34,63 +44,40 @@ public:
             printf("pos y %d\n",myszkaY);
         }
     }
+    void run(Engine *super){
+       Point3D p1(400.0,300.0, 0.0f);
+       Point3D p2(340.0,215.0, 0.0f);
+       Point3D p3(320.0,250.0, 0.0f);
+       Point3D p4(0.5,0.5,-0.5);
+       Color color(1.0f,1.0f,1.0f);
+       list.push_front(p1);
+       list.push_front(p2);
+       list.push_front(p3);
+       PrimitiveRender render;
+       SDL_GL_MakeCurrent(super->getWindow(), super->getContext());
+       SDL_GetWindowSize(super->getWindow(), &width, &hight);
+       glViewport(0, 0, width, hight);
+      // render.drawLine(p1,p2,color);
+      render.drawLineCloseSegment(list,color);
+     //render.drawTriangle(p1,p2,p3,color);
+
+         engine.changeObservatorPos();
+        SDL_GL_SwapWindow(super->getWindow());
+        list.clear();
+    }
+
 };
 
 
 int main (int ArgCount, char **Args)
 {
-
+      char *title="Grafika Komputerowa";
       MainWindow *mainWindow=new MainWindow();
-
+      mainWindow->engine.add(mainWindow);
       mainWindow->engine.addKeyListener(mainWindow);
-      //mainWindow->engine.addMouseListener(mainWindow);
-      mainWindow->engine.init("Grafika Komputerowa",100,100,800,600,SDL_WINDOW_OPENGL,1);
+      mainWindow->engine.addMouseListener(mainWindow);
+      mainWindow->engine.init(title,100,100,800,600,SDL_WINDOW_OPENGL,1);
 //    u32 WindowFlags = ;
-////    SDL_Window *Window = SDL_CreateWindow("OpenGL Test", 100, 100, WinWidth, WinHeight, WindowFlags);
-////    //assert(Window);
-////    SDL_GLContext Context = SDL_GL_CreateContext(Window);
-////
-////    b32 Running = 1;
-////    b32 FullScreen = 0;
-////    while (Running)
-////    {
-////        SDL_Event Event;
-////        while (SDL_PollEvent(&Event))
-////        {
-////            if (Event.type == SDL_KEYDOWN)
-////            {
-////                switch (Event.key.keysym.sym)
-////                {
-////                    case SDLK_ESCAPE:
-////                        Running = 0;
-////                        break;
-////                    case 'f':
-////                        FullScreen = !FullScreen;
-////                        if (FullScreen)
-////                        {
-////                            SDL_SetWindowFullscreen(Window, WindowFlags | SDL_WINDOW_FULLSCREEN_DESKTOP);
-////                        }
-////                        else
-////                        {
-////                            SDL_SetWindowFullscreen(Window, WindowFlags);
-////                        }
-////                        break;
-////                    default:
-////                        break;
-////                }
-////            }
-////            else if (Event.type == SDL_QUIT)
-////            {
-////                Running = 0;
-////            }
-////        }
-////
-////        glViewport(0, 0, WinWidth, WinHeight);
-////        glClearColor(1.f, 0.f, 1.f, 0.f);
-////        glClear(GL_COLOR_BUFFER_BIT);
-////
-////        SDL_GL_SwapWindow(Window);
-////    }
 
 
 

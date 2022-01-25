@@ -7,6 +7,7 @@
 #include <glm/glm.hpp>
 #include <glm/gtx/transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
+#include "../headers/Component.h"
 bool Engine::initSDL() {
     if( SDL_Init( SDL_INIT_VIDEO ) < 0 )
     {
@@ -18,7 +19,8 @@ bool Engine::initSDL() {
 void Engine::setRenderingSetings() {
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    glOrtho(-2.0, 2.0, -2.0, 2.0, -20.0, 20.0);
+    glOrtho(0.0, width, hight, 0.0, -1.0, 1.0);
+    //glOrtho(-2.0, 2.0, -2.0, 2.0, -20.0, 20.0);
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
     glEnable(GL_DEPTH_TEST);
@@ -28,7 +30,7 @@ void Engine::setRenderingSetings() {
 void Engine::mainLoop() {
 
     while (!endFlag) {
-        clear();
+        //clear();
         while (SDL_PollEvent(&Event)) {
             if (Event.type == SDL_QUIT) {
                 endFlag=true;
@@ -48,14 +50,11 @@ void Engine::mainLoop() {
 
         }
 
+        for (std::list<Component*>::iterator it = components.begin(); it != components.end(); ++it)
+            (*it)->run(this);
         //clear();
-        SDL_GL_MakeCurrent(window, contex);
-        SDL_GetWindowSize(window, &width, &hight);
-        glViewport(0, 0, width, hight);
-        changeObservatorPos();
-        Render();
 
-        SDL_GL_SwapWindow(window);
+
 
     }
 }
@@ -83,6 +82,7 @@ bool Engine::init(char *title, int posX, int posY, int width, int hight, uint32_
     if(mode==0){
         SDL_SetWindowFullscreen(window, WindowFlags | SDL_WINDOW_FULLSCREEN_DESKTOP);
     }
+
     mainLoop();
     return true;
 }
@@ -120,7 +120,7 @@ void Engine::clear() {
 }
 void Engine::changeObservatorPos(){
 
-    glRotatef(lookAngle, 1.0, 1.0, 1.0);
+    glRotatef(lookAngle, 1.0, -0.5, 0.0);
 //    glm::mat4 MatM = glm::translate(glm::vec3(0, 0, -300));
 //    glm::rotate(MatM, glm::radians(lookAngle), glm::vec3(1, 0, 0));
 //    MatM = glm::rotate(MatM, glm::radians(0.f), glm::vec3(0, 1, 0));
@@ -129,4 +129,26 @@ void Engine::changeObservatorPos(){
 //    // Translation +100 on X axis:
 //    glm::mat4 MatTra100 = glm::translate(glm::vec3(100, 0, 0));
 
+}
+void Engine::add(Component *componnet) {
+    components.push_front(componnet);
+}
+void Engine::changeObserverPerspective(float fovy,float aspect,float zNear,float zFar){
+
+        glm::perspective(60.f, 1.0f, 0.1f, 100.0f);
+        perspective = true;
+        puts("perspectywiczna");
+
+       // glOrtho(-2.f, 2.f, -2.f, 2.f, 0,0);
+
+}
+void Engine::changeObserverOrto(float left,float right,float bottom,float top,float near_var,float far_var) {
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+    glOrtho (left, right, bottom, top, near_var, far_var);
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
+    glEnable(GL_DEPTH_TEST);
+    glDepthFunc(GL_LESS);
+    glShadeModel(GL_SMOOTH);
 }

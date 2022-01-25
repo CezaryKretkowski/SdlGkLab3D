@@ -8,7 +8,11 @@ set(SDL2_LIB_DIR ./dependencies/SDL2/lib/x86)
 include_directories(${SDL2_INCLUDE_DIR})
 link_directories(${SDL2_LIB_DIR})
 find_package(OpenGL REQUIRED)
-add_executable(SdlGkLab3D main.cpp src/headers/Engine.h src/source/Engine.cpp src/headers/KeyListener.h src/headers/MouseListener.h src/source/RunFunction.cpp src/headers/staticFunction.h src/source/Primitive/Cube.cpp src/headers/Primitive/Cube.h)
+add_executable(SdlGkLab3D main.cpp src/headers/Engine.h src/source/Engine.cpp src/headers/KeyListener.h
+        src/headers/MouseListener.h
+        src/source/RunFunction.cpp src/headers/staticFunction.h src/headers/Primitive/Rectangle.h
+        src/source/Primitive/Rectangle.cpp src/headers/RenderableObject/RenderableObject.h
+        src/headers/Point3D.h src/source/Point3D.cpp src/headers/Component.h src/headers/Primitive/PrimitiveRender.h src/headers/Color.h src/source/Primitive/PrimitiveRender.cpp)
 IF(WIN32)
 target_link_libraries(${PROJECT_NAME} -lOpenGL32 SDL2main SDL2)
 else()
