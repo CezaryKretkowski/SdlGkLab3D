@@ -21,6 +21,7 @@ namespace Primitive {
     public:
         Rectangle(float width = 0, float height = 0, float depth = 0, Point3D point = 0,Color c=0.f);
 
+        void createRectangle(float width = 0, float height = 0, float depth = 0, Point3D point = 0,Color c=0.f);
 
         void draw();
 

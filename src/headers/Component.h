@@ -9,5 +9,6 @@ class Engine;
 class Component{
 public:
     void virtual run(Engine *engine){};
+    void virtual setUp(Engine *engine){};
 };
 #endif //SDLGKLAB3D_COMPONENT_H

@@ -16,7 +16,6 @@
 #include "Component.h"
 
 
-
 #define  FullScreenMode 1
 #define  WindowMode 0
 
@@ -42,7 +41,8 @@ private:
 
     bool perspective;
 
-    std::list<Component*> components;
+    std::list<Component *> components;
+
 //Metody
     void mainLoop();
 
@@ -51,6 +51,8 @@ private:
     void setRenderingSetings();
 
 public:
+
+    Engine();
 
     bool init(char *title, int posX, int posY, int width, int hight, uint32_t WindowFlags, int mode);
 
@@ -72,9 +74,9 @@ public:
 
     int getHight() { return hight; }
 
-    SDL_Window* getWindow(){return window;}
+    SDL_Window *getWindow() { return window; }
 
-    SDL_GLContext getContext(){return contex;}
+    SDL_GLContext getContext() { return contex; }
 
     void addKeyListener(KeyListener *k);
 
@@ -92,8 +94,13 @@ public:
 
     void add(Component *component);
 
-    void changeObserverPerspective(float fovy,float aspect,float zNear,float zFar);
-    void changeObserverOrto(float left,float right,float bottom,float top,float near_var,float far_var);
+    void changeObserverPerspective(float fovy, float aspect, float zNear, float zFar);
+
+    void changeObserverOrto(float left, float right, float bottom, float top, float near_var, float far_var);
+
+    void reload();
+
+    void endTask();
 };
 
 #endif //SDLGKLAB3D_ENGINE_H

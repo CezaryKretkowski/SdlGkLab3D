@@ -11,6 +11,7 @@ private:
     float z;
 public:
     Point3D(float x=0,float y=0,float z=0);
+    void creatPoint(float x=0,float y=0,float z=0);
     void setX(float x);
     void setY(float x);
     void setZ(float x);

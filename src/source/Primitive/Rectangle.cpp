@@ -47,7 +47,18 @@ Rectangle::Rectangle(float width, float height, float depth,Point3D point,Color 
     this->color[1]=color[1];
     this->color[2]=color[2];
 }
-
+void Rectangle::createRectangle(float width, float height, float depth, Point3D point, Color c) {
+    this->width=width;
+    this->height=height;
+    this->depth=depth;
+    this->vertexPos[0][0]=point.getX();
+    this->vertexPos[0][1]=point.getY();
+    this->vertexPos[0][2]=point.getZ();
+    calculateVertex();
+    this->color[0]=color[0];
+    this->color[1]=color[1];
+    this->color[2]=color[2];
+}
 void Rectangle::draw() {
     glClearColor(0.0, 0.0, 0.0, 1.0);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);

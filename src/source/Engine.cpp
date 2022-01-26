@@ -16,6 +16,9 @@ bool Engine::initSDL() {
     }
     else return true;
 }
+Engine::Engine(){
+    this->endFlag=false;
+}
 void Engine::setRenderingSetings() {
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
@@ -29,6 +32,8 @@ void Engine::setRenderingSetings() {
 }
 void Engine::mainLoop() {
 
+    for (std::list<Component*>::iterator it = components.begin(); it != components.end(); ++it)
+        (*it)->setUp(this);
     while (!endFlag) {
         //clear();
         while (SDL_PollEvent(&Event)) {
@@ -151,4 +156,11 @@ void Engine::changeObserverOrto(float left,float right,float bottom,float top,fl
     glEnable(GL_DEPTH_TEST);
     glDepthFunc(GL_LESS);
     glShadeModel(GL_SMOOTH);
+}
+void Engine::endTask(){
+    endFlag=true;
+}
+void Engine::reload() {
+    endFlag=false;
+    mainLoop();
 }
