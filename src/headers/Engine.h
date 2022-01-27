@@ -21,8 +21,9 @@
 
 class Engine {
 private:
+    ///Wskażnik na główne okno gry
     SDL_Window *window;
-
+    ///Podstawowe pozycje i rozmia okna
     int posX, posY, width, hight;
 
     bool endFlag = false;

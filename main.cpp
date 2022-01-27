@@ -83,8 +83,8 @@ public:
        glViewport(0, 0, width, hight);
       // render.drawLine(p1,p2,color);
       if(end)
-          rect.draw();
-     //   render.drawLineCloseSegment(list,color);
+      rect.draw();
+       // render.drawLineCloseSegment(list,color);
       //else
 
      //render.drawTriangle(p1,p2,p3,color);
