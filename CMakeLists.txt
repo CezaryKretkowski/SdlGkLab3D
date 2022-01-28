@@ -12,7 +12,7 @@ add_executable(SdlGkLab3D main.cpp src/headers/Engine.h src/source/Engine.cpp sr
         src/headers/MouseListener.h
         src/source/RunFunction.cpp src/headers/staticFunction.h src/headers/Primitive/Rectangle.h
         src/source/Primitive/Rectangle.cpp src/headers/RenderableObject/RenderableObject.h
-        src/headers/Point3D.h src/source/Point3D.cpp src/headers/Component.h src/headers/Primitive/PrimitiveRender.h src/headers/Color.h src/source/Primitive/PrimitiveRender.cpp)
+        src/headers/Point3D.h src/source/Point3D.cpp src/headers/Component.h src/headers/Primitive/PrimitiveRender.h src/headers/Color.h src/source/Primitive/PrimitiveRender.cpp src/headers/Observer.h src/source/Observer.cpp)
 IF(WIN32)
 target_link_libraries(${PROJECT_NAME} -lOpenGL32 SDL2main SDL2)
 else()

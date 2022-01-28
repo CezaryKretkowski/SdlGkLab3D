@@ -44,6 +44,8 @@ private:
 
     std::list<Component *> components;
 
+
+
 //Metody
     void mainLoop();
 
@@ -90,7 +92,6 @@ public:
     void setLookAngle(GLfloat lookAngle) { this->lookAngle = lookAngle; }
 
     GLfloat getLookAngle() { return lookAngle; }
-
     void changeObservatorPos();
 
     void add(Component *component);

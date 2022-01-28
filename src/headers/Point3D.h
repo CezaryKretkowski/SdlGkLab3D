@@ -30,5 +30,6 @@ public:
         this->z+p.z;
     }
 
+
 };
 #endif //GK_LAB_POINT3D_H
