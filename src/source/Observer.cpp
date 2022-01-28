@@ -40,24 +40,48 @@ void Observer::onKeyPressedDown(SDL_Event e){
     }
     if(e.key.keysym.sym=='u') {
         y=y+0.1;
+        Point3D p(1,0,0);
         angle=0.9;
         p1.setY(y);
-        rotate(p1,angle);
+        move(p1);
+
     }
     if(e.key.keysym.sym=='j') {
         y=y-0.1;
-        angle==0.00001;
         p1.setY(y);
-        rotate(p1,angle);
+        move(p1);
+
     }
     if(e.key.keysym.sym=='y') {
-        angle=angle-0.1;
-
-        rotate(p1,angle);
+        x=1;
+        y=0;
+        z=0;
+        Point3D p(1,0,0);
+        p1=p;
+        rotate(p,0.9);
     }
     if(e.key.keysym.sym=='h') {
-        angle=angle+0.1;
-
-        rotate(p1,angle);
+        x=-1;
+        y=0;
+        z=0;
+        Point3D p(-1,0,0);
+        p1=p;
+        rotate(p,0.9);
+    }
+    if(e.key.keysym.sym=='i') {
+        x=0;
+        y=+1;
+        z=0;
+        Point3D p(0,1,0);
+        p1=p;
+        rotate(p,0.9);
+    }
+    if(e.key.keysym.sym=='k') {
+        x=0;
+        y=-1;
+        z=0;
+        Point3D p(0,-1,0);
+        p1=p;
+        rotate(p,0.9);
     }
 }

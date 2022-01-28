@@ -38,6 +38,8 @@ void Engine::mainLoop() {
         (*it)->setUp(this);
     while (!endFlag) {
         //clear();
+        glClearColor(0.0, 0.0, 0.0, 1.0);
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         while (SDL_PollEvent(&Event)) {
             if (Event.type == SDL_QUIT) {
                 endFlag = true;
@@ -60,7 +62,7 @@ void Engine::mainLoop() {
         for (std::list<Component *>::iterator it = components.begin(); it != components.end(); ++it)
             (*it)->run(this);
         //clear();
-
+        //glMatrixMode(GL_MODELVIEW);
 
 
     }

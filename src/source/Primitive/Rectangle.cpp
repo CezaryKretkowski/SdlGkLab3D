@@ -2,6 +2,11 @@
 // Created by cezar on 16.01.2022.
 //
 
+#include <glm/vec4.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtx/transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
+
 #include "../../headers/Primitive/Rectangle.h"
 using namespace Primitive;
 void Rectangle::calculateVertex() {
@@ -60,8 +65,7 @@ void Rectangle::createRectangle(float width, float height, float depth, Point3D 
     this->color[2]=color[2];
 }
 void Rectangle::draw() {
-    glClearColor(0.0, 0.0, 0.0, 1.0);
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
     glBegin(GL_QUADS);
 
     glColor3f(color[0],color[1],color[2]);
@@ -104,6 +108,18 @@ void Rectangle::draw() {
 
     glEnd();
 
-    glMatrixMode(GL_MODELVIEW);
+
+}
+void Rectangle::rotate(Point3D p, float angle) {
+    glm::mat4 matrix;
+    matrix=glm::rotate(glm::radians(angle),glm::vec3 (p.getX(),p.getY(),p.getZ()));
+
+    glLoadMatrixf(glm::value_ptr(matrix));
+
+}
+void Rectangle::translate() {
+
+}
+void Rectangle::scale() {
 
 }
