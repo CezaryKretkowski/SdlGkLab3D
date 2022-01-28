@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <stdint.h>
 #include <assert.h>
+#include <glm/glm.hpp>
 #include "src/headers/Engine.h"
 #include "src/headers/MouseListener.h"
 #include "src/headers/Component.h"
