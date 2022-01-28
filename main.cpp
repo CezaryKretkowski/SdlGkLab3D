@@ -24,6 +24,7 @@ public:
     std::list<Point3D> list;
     bool end=true;
     Primitive::Rectangle rect;
+    Primitive::Rectangle rect1;
     Point3D p1;
     Point3D p2;
     Point3D p3;
@@ -39,7 +40,12 @@ public:
         return (time-lastTime)/(float)SDL_GetPerformanceFrequency()*1000.0f;
     }
 
-
+    void onKeyPressedDown(SDL_Event e){
+        if(e.key.keysym.sym==SDL_KeyCode::SDLK_q){
+            Point3D p(1,0,0);
+            rect.rotate(p,0.9);
+        }
+    }
     void onMouseMotion(SDL_Event e){
         myszkaX = e.motion.x;
         myszkaY = e.motion.y;
@@ -60,7 +66,7 @@ public:
        glViewport(0, 0, width, hight);
 
         rect.draw();
-
+        rect1.draw();
 
 
         SDL_GL_SwapWindow(super->getWindow());
@@ -69,9 +75,9 @@ public:
     void setUp(Engine *super){
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         this->p1.creatPoint(0.0f,0.0f, 20.0f);
-        this->p2.creatPoint(340.0,215.0, 0.0f);
-        this->p3.creatPoint(320.0,250.0, 0.0f);
-        this->p4.creatPoint(0.5,0.5,-0.5);
+        this->p2.creatPoint(0.0f,0.0f, 0.0f);
+        this->p3.creatPoint(2.5,0.5,-2.5);
+        this->p4.creatPoint(0.5,0.5,-2.5);
         this->color=Color(1.0f,1.0f,1.0f);
         this->list.push_front(p1);
         this->list.push_front(p2);
@@ -79,6 +85,8 @@ public:
         //engine.changeObserverOrto(-2.0, 2.0, -2.0, 2.0, -20.0, 20.0);
         engine.changeObserverPerspective(45.0f, 800/600, 1.0f, 100.0f);
         this->rect.createRectangle(1.0f,1.0f,1.0f,p4,color);
+        this->rect1.createRectangle(1.0f,1.0f,1.0f,p3,color);
+        obs.move(p2);
         time=0;
         engine.addKeyListener(&obs);
 
