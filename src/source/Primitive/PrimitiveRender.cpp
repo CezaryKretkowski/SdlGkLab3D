@@ -5,7 +5,7 @@
 #include "../../headers/Primitive/PrimitiveRender.h"
 void PrimitiveRender::drawPoint(Point3D p, Color color) {
 
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    //glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glColor3f(color.getR(), color.getG(), color.getB());
     glBegin (GL_POINTS);
     glVertex3f (p.getX(), p.getY(), p.getZ());
@@ -13,7 +13,7 @@ void PrimitiveRender::drawPoint(Point3D p, Color color) {
 
 }
 void PrimitiveRender::drawLine(Point3D p1, Point3D p2, Color color) {
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+   // glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glColor3f(color.getR(), color.getG(), color.getB());
     glBegin (GL_LINES);
     glVertex3f(p1.getX(),p1.getY(),p1.getZ());
@@ -22,7 +22,7 @@ void PrimitiveRender::drawLine(Point3D p1, Point3D p2, Color color) {
     glMatrixMode(GL_MODELVIEW);
 }
 void PrimitiveRender::drawLineSegment(std::list<Point3D> vertexList, Color color) {
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    //glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glColor3f(color.getR(), color.getG(), color.getB());
     glBegin(GL_LINE_STRIP);
     for(std::list<Point3D>::iterator i= vertexList.begin();i!=vertexList.end();i++){
@@ -32,7 +32,7 @@ void PrimitiveRender::drawLineSegment(std::list<Point3D> vertexList, Color color
     glMatrixMode(GL_MODELVIEW);
 }
 void PrimitiveRender::drawLineCloseSegment(std::list<Point3D> vertexList, Color color) {
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+   // glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glColor3f(color.getR(), color.getG(), color.getB());
     glBegin(GL_LINE_LOOP);
     for(std::list<Point3D>::iterator i= vertexList.begin();i!=vertexList.end();i++){
@@ -42,7 +42,7 @@ void PrimitiveRender::drawLineCloseSegment(std::list<Point3D> vertexList, Color 
     glMatrixMode(GL_MODELVIEW);
 }
 void PrimitiveRender::drawTriangle(Point3D p1, Point3D p2, Point3D p3, Color color) {
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+   // glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     glBegin (GL_TRIANGLES);
     glColor3f(color.getR(),color.getB(),color.getG());

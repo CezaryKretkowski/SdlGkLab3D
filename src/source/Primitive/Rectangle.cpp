@@ -8,6 +8,7 @@
 #include <glm/gtc/type_ptr.hpp>
 
 #include "../../headers/Primitive/Rectangle.h"
+#include <iostream>
 using namespace Primitive;
 void Rectangle::calculateVertex() {
     this->vertexPos[1][0]=vertexPos[0][0];//1
@@ -114,12 +115,48 @@ void Rectangle::rotate(Point3D p, float angle) {
     glm::mat4 matrix;
     matrix=glm::rotate(glm::radians(angle),glm::vec3 (p.getX(),p.getY(),p.getZ()));
 
-    glLoadMatrixf(glm::value_ptr(matrix));
+    for(int i=0;i<8;i++){
+        glm::vec4 v(vertexPos[i][0],vertexPos[i][1],vertexPos[i][2],0);
+        glm::vec4 newVec= v*matrix;
+
+        vertexPos[i][0]=newVec[0];
+        vertexPos[i][1]=newVec[1];
+        vertexPos[i][2]=newVec[2];
+    }
+
 
 }
-void Rectangle::translate() {
+void Rectangle::translate(Point3D p) {
+    glm::mat4 matrix;
+//    vertexPos[0][0]=p.getX();
+//    vertexPos[0][1]=p.getY();
+//    vertexPos[0][2]=p.getZ();
+//    calculateVertex();
+    matrix=glm::translate(glm::vec3 (p.getX(),p.getY(),p.getZ()));
 
+    for(int i=0;i<8;i++){
+        glm::vec4 v(1,vertexPos[i][0],vertexPos[i][1],vertexPos[i][2]);
+        glm::vec4 newVec= v*matrix;
+
+        vertexPos[i][0]=newVec[1];
+        vertexPos[i][1]=newVec[2];
+        vertexPos[i][2]=newVec[3];
+    }
 }
-void Rectangle::scale() {
+void Rectangle::scale(Point3D p) {
+    glm::mat4 matrix;
+    glm::mat4 matrix1;
+    glm::mat4 matrix2;
+    matrix1=glm::scale(glm::vec3 (p.getX(),p.getY(),p.getZ()));
+    //matrix2=glm::scale(glm::vec3(-1));
+    matrix=matrix1*matrix2;
+    for(int i=0;i<8;i++){
+        glm::vec4 v(vertexPos[i][0],vertexPos[i][1],vertexPos[i][2],1);
+        glm::vec4 newVec= v*matrix;
+
+        vertexPos[i][0]=newVec[0];
+        vertexPos[i][1]=newVec[1];
+        vertexPos[i][2]=newVec[2];
+    }
 
 }

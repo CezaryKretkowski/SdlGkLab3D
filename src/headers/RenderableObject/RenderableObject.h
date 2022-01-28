@@ -10,9 +10,9 @@
 class RenderableObject{
 public:
     virtual void draw(){};
-    virtual void translate(){};
+    virtual void translate(Point3D p){};
     virtual void rotate(Point3D p,float angle){};
-    virtual void scale(){};
+    virtual void scale(Point3D p){};
 
 };
 #endif //SDLGKLAB3D_RENDERABLEOBJECT_H

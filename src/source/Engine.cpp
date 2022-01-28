@@ -2,6 +2,7 @@
 // Created by cezar on 08.01.2022.
 //
 #include <SDL_opengl.h>
+#include <SDL2/SDL_opengl.h>
 #include "../headers/Engine.h"
 #include "../headers/staticFunction.h"
 #include <glm/glm.hpp>
@@ -20,16 +21,29 @@ Engine::Engine() {
     this->endFlag = false;
 }
 
-void Engine::setRenderingSetings() {
-    glMatrixMode(GL_PROJECTION);
-    glLoadIdentity();
-    glOrtho(0.0, width, hight, 0.0, -1.0, 1.0);
-    //glOrtho(-2.0, 2.0, -2.0, 2.0, -20.0, 20.0);
-    glMatrixMode(GL_MODELVIEW);
-    glLoadIdentity();
+void Engine::setLightSettings() {
+    glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
+    // Z-buffer ON:
     glEnable(GL_DEPTH_TEST);
-    glDepthFunc(GL_LESS);
-    glShadeModel(GL_SMOOTH);
+    // Lighting ON:
+    glEnable(GL_LIGHTING);
+
+    // Global lighting parameters:
+    glLightModelfv(GL_LIGHT_MODEL_AMBIENT, lightAmb);
+
+    // Light parameters for light #0:
+    glLightfv(GL_LIGHT0, GL_DIFFUSE, lightDif);
+    glLightfv(GL_LIGHT0, GL_POSITION, lightPos);
+    glLightfv(GL_LIGHT0, GL_SPECULAR, lightSpc);
+    // Enable light #0:
+    glEnable(GL_LIGHT0);
+
+    // Material parameters (common for all objects):
+    glMaterialfv(GL_FRONT, GL_SPECULAR, lightSpc);
+    glMateriali(GL_FRONT, GL_SHININESS, 64);
+    // Color material ON:
+    glEnable(GL_COLOR_MATERIAL);
+    glColorMaterial(GL_FRONT, GL_AMBIENT_AND_DIFFUSE);
 }
 
 void Engine::mainLoop() {
@@ -63,6 +77,7 @@ void Engine::mainLoop() {
             (*it)->run(this);
         //clear();
         //glMatrixMode(GL_MODELVIEW);
+        glLightfv(GL_LIGHT0, GL_POSITION, lightPos);
 
 
     }
@@ -92,7 +107,7 @@ bool Engine::init(char *title, int posX, int posY, int width, int hight, uint32_
     if (mode == 0) {
         SDL_SetWindowFullscreen(window, WindowFlags | SDL_WINDOW_FULLSCREEN_DESKTOP);
     }
-
+    setLightSettings();
     mainLoop();
     return true;
 }
@@ -164,12 +179,8 @@ void Engine::changeObserverPerspective(float fovy, float aspect, float zNear, fl
 void Engine::changeObserverOrto(float left, float right, float bottom, float top, float near_var, float far_var) {
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    glOrtho(left, right, bottom, top, near_var, far_var);
-    glMatrixMode(GL_MODELVIEW);
-    glLoadIdentity();
-    glEnable(GL_DEPTH_TEST);
-    glDepthFunc(GL_LESS);
-    glShadeModel(GL_SMOOTH);
+    glLoadMatrixf(glm::value_ptr(glm::ortho(left, right, bottom, top, near_var, far_var)));
+    puts("orotgrafic");
 }
 
 void Engine::endTask() {
@@ -179,4 +190,14 @@ void Engine::endTask() {
 void Engine::reload() {
     endFlag = false;
     mainLoop();
+}
+
+void Engine::setLightParameters(GLfloat *lightAmb, GLfloat *lightDif, GLfloat *lightSpc, GLfloat *lightPos) {
+
+    for (int i = 0; i < 4; i++) {
+        this->lightAmb[i] = lightAmb[i];
+        this->lightDif[i] = lightDif[i];
+        this->lightSpc[i] = lightSpc[i];
+        this->lightPos[i] = lightPos[i];
+    }
 }

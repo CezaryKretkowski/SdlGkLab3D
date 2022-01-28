@@ -44,6 +44,13 @@ private:
     ///Kontener dla komponentów
     std::list<Component *> components;
 
+    GLfloat lightAmb[4];
+
+    GLfloat lightDif[4];
+
+    GLfloat lightSpc[4];
+
+    GLfloat lightPos[4];
 
 
 //Metody
@@ -52,7 +59,9 @@ private:
 
     bool initSDL();
 
-    void setRenderingSetings();
+    void setLightSettings();
+
+
 
 public:
     ///Silnik
@@ -104,6 +113,8 @@ public:
     void reload();
 
     void endTask();
+
+    void setLightParameters(GLfloat lightAmb[4],GLfloat lightDif[4],GLfloat lightSpc[4],GLfloat lightPos[4]);
 };
 
 #endif //SDLGKLAB3D_ENGINE_H
