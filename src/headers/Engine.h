@@ -21,17 +21,17 @@
 
 class Engine {
 private:
-    ///Wskażnik na główne okno gry
+    ///Wskaźnik na główne okno gry
     SDL_Window *window;
-    ///Podstawowe pozycje i rozmia okna
+    ///Podstawowe pozycje i rozmiar okna
     int posX, posY, width, hight;
-
+    ///Zmienna boolowska służąca do przerwania głównej pętli gry
     bool endFlag = false;
-
+    ///
     GLfloat lookAngle;
-
+    ///Rdzeń obsługi zdarzeń SDL
     SDL_Event Event;
-
+    ///Lista wskaźników na   bsług             p
     std::list<KeyListener *> keyFunction;
 
     std::list<MouseListener *> mouseListener;
