@@ -4,7 +4,6 @@
 #include <SDL_opengl.h>
 #include <SDL2/SDL_opengl.h>
 #include "../headers/Engine.h"
-#include "../headers/staticFunction.h"
 #include <glm/glm.hpp>
 #include <glm/gtx/transform.hpp>
 #include <glm/gtc/type_ptr.hpp>

@@ -20,7 +20,9 @@
 #define  WindowMode 0
 #define  Flat 0
 #define Smooth 1
-
+/**
+ * @class Engine klasa reprezętująca silnik posiada pole i metody obsługujące główne funkcionalności
+ */
 class Engine {
 private:
     ///Wskażnik na główne okno gry

@@ -10,13 +10,12 @@
 #include "src/headers/MouseListener.h"
 #include "src/headers/Component.h"
 #include "src/headers/Primitive/Rectangle.h"
-#include "src/headers/staticFunction.h"
 #include "src/headers/Primitive/PrimitiveRender.h"
 #include "src/headers/Observer.h"
 GLfloat lightAmb[] = {0.2f, 0.2f, 0.2f, 1.0f};
 GLfloat lightDif[] = {0.8f, 0.8f, 0.8f, 1.0f};
 GLfloat lightSpc[] = {1.0f, 1.0f, 1.0f, 1.0f};
-GLfloat lightPos[] = {45.0f, 800/600, 1.0f, 100.0f};
+GLfloat lightPos[] = {45.0f, 1024/720, 1.0f, 100.0f};
 class MainWindow:public KeyListener,public MouseListener,public Component{
 public:
 
@@ -157,6 +156,6 @@ int main (int ArgCount, char **Args)
       mainWindow->engine.add(mainWindow);
       mainWindow->engine.addKeyListener(mainWindow);
       mainWindow->engine.addMouseListener(mainWindow);
-      mainWindow->engine.init(title,100,100,800,600,SDL_WINDOW_OPENGL,1);
+      mainWindow->engine.init(title,100,100,1024,720,SDL_WINDOW_OPENGL,1);
     return 0;
 }

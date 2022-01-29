@@ -1,8 +1,0 @@
-//
-// Created by cezar on 16.01.2022.
-//
-
-#ifndef SDLGKLAB3D_STATICFUNCTION_H
-#define SDLGKLAB3D_STATICFUNCTION_H
-void Render();
-#endif //SDLGKLAB3D_STATICFUNCTION_H
