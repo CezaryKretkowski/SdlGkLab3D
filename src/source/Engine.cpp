@@ -44,6 +44,10 @@ void Engine::setLightSettings() {
     // Color material ON:
     glEnable(GL_COLOR_MATERIAL);
     glColorMaterial(GL_FRONT, GL_AMBIENT_AND_DIFFUSE);
+    if(shadeModelType==0)
+        glShadeModel(GL_FLAT);
+    else
+        glShadeModel(GL_SMOOTH);
 }
 
 void Engine::mainLoop() {
@@ -192,8 +196,8 @@ void Engine::reload() {
     mainLoop();
 }
 
-void Engine::setLightParameters(GLfloat *lightAmb, GLfloat *lightDif, GLfloat *lightSpc, GLfloat *lightPos) {
-
+void Engine::setLightParameters(GLfloat *lightAmb, GLfloat *lightDif, GLfloat *lightSpc, GLfloat *lightPos,int lightsheedType) {
+    this->shadeModelType=lightsheedType;
     for (int i = 0; i < 4; i++) {
         this->lightAmb[i] = lightAmb[i];
         this->lightDif[i] = lightDif[i];

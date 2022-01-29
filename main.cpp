@@ -136,7 +136,7 @@ public:
         this->list.push_front(p3);
         //engine.changeObserverOrto(-2.0, 2.0, -2.0, 2.0, -20.0, 20.0);
         engine.changeObserverPerspective(45.0f, 800/600, 1.0f, 100.0f);
-       engine.changeObserverOrto(-2.0, 2.0, -2.0, 2.0, -20.0, 20.0);
+      // engine.changeObserverOrto(-2.0, 2.0, -2.0, 2.0, -20.0, 20.0);
         this->rect.createRectangle(1.0f,1.0f,1.0f,p4,color);
         this->rect1.createRectangle(1.0f,1.0f,1.0f,p3,color);
         obs.move(p2);
@@ -153,7 +153,7 @@ int main (int ArgCount, char **Args)
 {
       char *title="Grafika Komputerowa";
       MainWindow *mainWindow=new MainWindow();
-      mainWindow->engine.setLightParameters(lightAmb,lightDif,lightSpc,lightPos);
+      mainWindow->engine.setLightParameters(lightAmb,lightDif,lightSpc,lightPos,Smooth);
       mainWindow->engine.add(mainWindow);
       mainWindow->engine.addKeyListener(mainWindow);
       mainWindow->engine.addMouseListener(mainWindow);

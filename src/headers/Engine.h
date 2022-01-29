@@ -18,6 +18,8 @@
 
 #define  FullScreenMode 1
 #define  WindowMode 0
+#define  Flat 0
+#define Smooth 1
 
 class Engine {
 private:
@@ -52,6 +54,7 @@ private:
 
     GLfloat lightPos[4];
 
+    int shadeModelType;
 
 //Metody
     ///Funckja głównej pętli
@@ -114,7 +117,7 @@ public:
 
     void endTask();
 
-    void setLightParameters(GLfloat lightAmb[4],GLfloat lightDif[4],GLfloat lightSpc[4],GLfloat lightPos[4]);
+    void setLightParameters(GLfloat lightAmb[4],GLfloat lightDif[4],GLfloat lightSpc[4],GLfloat lightPos[4],int lightsheedType);
 };
 
 #endif //SDLGKLAB3D_ENGINE_H
