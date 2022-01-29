@@ -53,6 +53,8 @@ private:
     GLfloat lightPos[4];
     /// zmienna służąca do wyboru modelu cieniowania
     int shadeModelType;
+    ///Zmienna boolowaska słuząca do włączenia oświetlenia
+    bool lightSwitch;
 
 //Metody
     ///Funckja głównej pętli
@@ -192,7 +194,7 @@ public:
      * @param lightPos wskażnik na tablice określającą pozycje światła
      * @param lightsheedType  zmienna określająca typ użytego cieniowania
      */
-    void setLightParameters(GLfloat lightAmb[4],GLfloat lightDif[4],GLfloat lightSpc[4],GLfloat lightPos[4],int lightsheedType);
+    void setLightParameters(GLfloat lightAmb[4],GLfloat lightDif[4],GLfloat lightSpc[4],GLfloat lightPos[4],int lightsheedType,bool lightSwitch);
 };
 
 #endif //SDLGKLAB3D_ENGINE_H

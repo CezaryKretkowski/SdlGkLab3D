@@ -26,6 +26,8 @@ public:
     int hight;
 
     std::list<Point3D> list;
+    std::list<Point3D> list2;
+    std::list<Point3D> list3;
     bool end=true;
     Primitive::Rectangle rect;
     Primitive::Rectangle rect1;
@@ -40,47 +42,19 @@ public:
     float angle;
     float  z,x,y;
     double time;
-    double timeclaulate(){
-        double lastTime=time;
-        time=SDL_GetTicks();
-        return (time-lastTime)/(float)SDL_GetPerformanceFrequency()*1000.0f;
-    }
 
-    void set(){
-        glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
-        // Z-buffer ON:
-        glEnable(GL_DEPTH_TEST);
-        // Lighting ON:
-        glEnable(GL_LIGHTING);
 
-        // Global lighting parameters:
-        glLightModelfv(GL_LIGHT_MODEL_AMBIENT, lightAmb);
-
-        // Light parameters for light #0:
-        glLightfv(GL_LIGHT0, GL_DIFFUSE, lightDif);
-        glLightfv(GL_LIGHT0, GL_POSITION, lightPos);
-        glLightfv(GL_LIGHT0, GL_SPECULAR, lightSpc);
-        // Enable light #0:
-        glEnable(GL_LIGHT0);
-
-        // Material parameters (common for all objects):
-        glMaterialfv(GL_FRONT, GL_SPECULAR, lightSpc);
-        glMateriali(GL_FRONT, GL_SHININESS, 64);
-        // Color material ON:
-        glEnable(GL_COLOR_MATERIAL);
-        glColorMaterial(GL_FRONT, GL_AMBIENT_AND_DIFFUSE);
-    }
     void onKeyPressedDown(SDL_Event e){
         if(e.key.keysym.sym==SDL_KeyCode::SDLK_z){
-            angle=angle+1;
-            if(angle==360) angle=0;
-
             Point3D p(-1,-1,-1);
-            //rect.rotate(p,angle);
-            rect.scale(p);
+            rect.rotate(p,5);
+            //rect.scale(p);
         }
-
-
+        if(e.key.keysym.sym==SDL_KeyCode::SDLK_c){
+            Point3D p(1,1,1);
+            rect.rotate(p,5);
+            //rect.scale(p);
+        }
         if(e.key.keysym.sym==SDL_KeyCode::SDLK_e){
             angle++;
             Point3D p(1.0f,0.0f,0.0f);
@@ -106,26 +80,45 @@ public:
         }
     }
     void run(Engine *super){
+        Point3D p(0,0,0);
+        Point3D p01(0.1,0.1,0);
+        Point3D p02(2,0,0);
+        Point3D p03(3,3,0);
+        Point3D p04(-3,3,-0.5);
+        Point3D p05(-3,4,-0.5);
+        Point3D p06(-1,0,-0.5);
+        Point3D p07(-3,0,-0.5);
+        Point3D p08(1,0,-0.5);
+        list2.push_front(p01);
+        list2.push_front(p02);
+        list2.push_front(p03);
+        list3.push_front(p04);
+        list3.push_front(p05);
+        list3.push_front(p06);
+        render.drawLineCloseSegment(list2,color);
 
-      time=timeclaulate();
 
        SDL_GL_MakeCurrent(super->getWindow(), super->getContext());
        SDL_GetWindowSize(super->getWindow(), &width, &hight);
        glViewport(0, 0, width, hight);
 
+       render.drawPoint(p,color);
         rect.draw();
         rect1.draw();
         render.drawTriangle(p3,p4,p5,color);
-
+        render.drawLineSegment(list3,color);
+        render.drawLine(p07,p08,color);
 
 
         SDL_GL_SwapWindow(super->getWindow());
-
+        list2.clear();
+        list3.clear();
     }
     void setUp(Engine *super){
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         this->p1.creatPoint(0.0f,0.0f, 20.0f);
         this->p2.creatPoint(0.0f,0.0f, 0.0f);
+
         this->p3.creatPoint(2.5,0.5,-2.5);
         this->p4.creatPoint(0.5,0.5,-2.5);
         this->p5.creatPoint(0.5,2.5,-2.5);
@@ -141,7 +134,7 @@ public:
         obs.move(p2);
         time=0;
         engine.addKeyListener(&obs);
-        set();
+
     }
 
 
@@ -152,7 +145,7 @@ int main (int ArgCount, char **Args)
 {
       char *title="Grafika Komputerowa";
       MainWindow *mainWindow=new MainWindow();
-      mainWindow->engine.setLightParameters(lightAmb,lightDif,lightSpc,lightPos,Smooth);
+      mainWindow->engine.setLightParameters(lightAmb,lightDif,lightSpc,lightPos,Flat,true);
       mainWindow->engine.add(mainWindow);
       mainWindow->engine.addKeyListener(mainWindow);
       mainWindow->engine.addMouseListener(mainWindow);

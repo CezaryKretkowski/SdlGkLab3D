@@ -28,17 +28,17 @@ void Observer::onKeyPressedDown(SDL_Event e){
         p1.setZ(z);
         move(p1);
     }
-    if(e.key.keysym.sym=='a') {
+    if(e.key.keysym.sym=='d') {
         x=x-0.1;
         p1.setX(x);
         move(p1);
     }
-    if(e.key.keysym.sym=='d') {
+    if(e.key.keysym.sym=='a') {
         x=x+0.1;
         p1.setX(x);
         move(p1);
     }
-    if(e.key.keysym.sym=='u') {
+    if(e.key.keysym.sym==SDL_KeyCode::SDLK_DOWN) {
         y=y+0.1;
         Point3D p(1,0,0);
         angle=0.9;
@@ -46,13 +46,13 @@ void Observer::onKeyPressedDown(SDL_Event e){
         move(p1);
 
     }
-    if(e.key.keysym.sym=='j') {
+    if(e.key.keysym.sym==SDL_KeyCode::SDLK_UP) {
         y=y-0.1;
         p1.setY(y);
         move(p1);
 
     }
-    if(e.key.keysym.sym=='y') {
+    if(e.key.keysym.sym==SDL_KeyCode::SDLK_PAGEUP) {
         x=1;
         y=0;
         z=0;
@@ -60,7 +60,7 @@ void Observer::onKeyPressedDown(SDL_Event e){
         p1=p;
         rotate(p,0.9);
     }
-    if(e.key.keysym.sym=='h') {
+    if(e.key.keysym.sym==SDL_KeyCode::SDLK_PAGEDOWN) {
         x=-1;
         y=0;
         z=0;
@@ -68,7 +68,7 @@ void Observer::onKeyPressedDown(SDL_Event e){
         p1=p;
         rotate(p,0.9);
     }
-    if(e.key.keysym.sym=='i') {
+    if(e.key.keysym.sym==SDL_KeyCode::SDLK_RIGHT) {
         x=0;
         y=+1;
         z=0;
@@ -76,12 +76,12 @@ void Observer::onKeyPressedDown(SDL_Event e){
         p1=p;
         rotate(p,0.9);
     }
-    if(e.key.keysym.sym=='k') {
+    if(e.key.keysym.sym==SDL_KeyCode::SDLK_LEFT) {
         x=0;
         y=-1;
         z=0;
         Point3D p(0,-1,0);
-        p1=p;
+        p1;
         rotate(p,0.9);
     }
 }

@@ -21,32 +21,34 @@ Engine::Engine() {
 }
 
 void Engine::setLightSettings() {
-    glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
-    // Z-buffer ON:
-    glEnable(GL_DEPTH_TEST);
-    // Lighting ON:
-    glEnable(GL_LIGHTING);
+   if(lightSwitch) {
+       glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
+       // Z-buffer ON:
+       glEnable(GL_DEPTH_TEST);
+       // Lighting ON:
+       glEnable(GL_LIGHTING);
 
-    // Global lighting parameters:
-    glLightModelfv(GL_LIGHT_MODEL_AMBIENT, lightAmb);
+       // Global lighting parameters:
+       glLightModelfv(GL_LIGHT_MODEL_AMBIENT, lightAmb);
 
-    // Light parameters for light #0:
-    glLightfv(GL_LIGHT0, GL_DIFFUSE, lightDif);
-    glLightfv(GL_LIGHT0, GL_POSITION, lightPos);
-    glLightfv(GL_LIGHT0, GL_SPECULAR, lightSpc);
-    // Enable light #0:
-    glEnable(GL_LIGHT0);
+       // Light parameters for light #0:
+       glLightfv(GL_LIGHT0, GL_DIFFUSE, lightDif);
+       glLightfv(GL_LIGHT0, GL_POSITION, lightPos);
+       glLightfv(GL_LIGHT0, GL_SPECULAR, lightSpc);
+       // Enable light #0:
+       glEnable(GL_LIGHT0);
 
-    // Material parameters (common for all objects):
-    glMaterialfv(GL_FRONT, GL_SPECULAR, lightSpc);
-    glMateriali(GL_FRONT, GL_SHININESS, 64);
-    // Color material ON:
-    glEnable(GL_COLOR_MATERIAL);
-    glColorMaterial(GL_FRONT, GL_AMBIENT_AND_DIFFUSE);
-    if(shadeModelType==0)
-        glShadeModel(GL_FLAT);
-    else
-        glShadeModel(GL_SMOOTH);
+       // Material parameters (common for all objects):
+       glMaterialfv(GL_FRONT, GL_SPECULAR, lightSpc);
+       glMateriali(GL_FRONT, GL_SHININESS, 64);
+       // Color material ON:
+       glEnable(GL_COLOR_MATERIAL);
+       glColorMaterial(GL_FRONT, GL_AMBIENT_AND_DIFFUSE);
+       if (shadeModelType == 0)
+           glShadeModel(GL_FLAT);
+       else
+           glShadeModel(GL_SMOOTH);
+   }
 }
 
 void Engine::mainLoop() {
@@ -80,7 +82,8 @@ void Engine::mainLoop() {
             (*it)->run(this);
         //clear();
         //glMatrixMode(GL_MODELVIEW);
-        glLightfv(GL_LIGHT0, GL_POSITION, lightPos);
+        if(lightSwitch)
+            glLightfv(GL_LIGHT0, GL_POSITION, lightPos);
 
 
     }
@@ -184,7 +187,7 @@ void Engine::reload() {
     mainLoop();
 }
 
-void Engine::setLightParameters(GLfloat *lightAmb, GLfloat *lightDif, GLfloat *lightSpc, GLfloat *lightPos,int lightsheedType) {
+void Engine::setLightParameters(GLfloat *lightAmb, GLfloat *lightDif, GLfloat *lightSpc, GLfloat *lightPos,int lightsheedType,bool lightSwich) {
     this->shadeModelType=lightsheedType;
     for (int i = 0; i < 4; i++) {
         this->lightAmb[i] = lightAmb[i];
@@ -192,4 +195,5 @@ void Engine::setLightParameters(GLfloat *lightAmb, GLfloat *lightDif, GLfloat *l
         this->lightSpc[i] = lightSpc[i];
         this->lightPos[i] = lightPos[i];
     }
+    this->lightSwitch=lightSwich;
 }
