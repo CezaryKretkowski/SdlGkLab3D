@@ -9,59 +9,59 @@
  */
 class Point3D{
 private:
-    ///Wartość wpóżędne x
+    ///Wartość współrzędnej x
     float x;
-    ///Wartość wpóżędne y
+    ///Wartość współrzędnej y
     float y;
-    ///Wartość wpóżędne z
+    ///Wartość współrzędnej z
     float z;
 public:
     /**Kostruktor klasy point3d
      *
-     * @param x Wartość wpóżędne x
-     * @param y Wartość wpóżędne y
-     * @param z Wartość wpóżędne z
+     * @param x Wartość współrzędnej x
+     * @param y Wartość współrzędnej y
+     * @param z Wartość współrzędnej z
      */
     Point3D(float x=0,float y=0,float z=0);
-    /**Metoda incjalizujące podstawowe wartości punktu
+    /**Metoda inicjalizująca podstawowe wartości punktu
      *
-     * @param x Wartość wpóżędne x
-     * @param y Wartość wpóżędne y
-     * @param z Wartość wpóżędne z
+     * @param x Wartość współrzędnej x
+     * @param y Wartość współrzędnej y
+     * @param z Wartość współrzędnej z
     */
     void creatPoint(float x=0,float y=0,float z=0);
-    /**Metoda ustawijąca
+    /**Metoda ustawiająca
      *
-     * @param x Wartość wpóżędne x
+     * @param x Wartość współrzędnej x
      */
     void setX(float x);
-    /**Metoda ustwiająca
+    /**Metoda ustawiająca
      *
-     * @param x Wartość wpóżędne Y
+     * @param x Wartość współrzędnej Y
      */
     void setY(float x);
-    /**Metoda ustwiająca
+    /**Metoda ustawiająca
     *
-    * @param x Wartość wpóżędne z
+    * @param x Wartość współrzędnej z
     */
     void setZ(float x);
-    /**Metoda poibierająca
+    /**Metoda pobierająca
      *
-     * @return współżedną x
+     * @return współrzędną x
      */
     float getX();
-    /**Metoda poibierająca
+    /**Metoda pobierająca
      *
-     * @return współżedną y
+     * @return współrzędną y
      */
     float getY();
-    /**Metoda poibierająca
+    /**Metoda pobierająca
      *
-     * @return współżedną z
+     * @return współrzędną z
      */
     float getZ();
     //void drawPoint(sf::RenderWindow *parent,sf::Color color=sf::Color::White);
-    /**Przeciązenie operatora przypisania
+    /**Przeciążenie operatora przypisania
      *
      * @param p obiekt przypisywany
      * @return obiekt do którego została dodana wartość
@@ -71,7 +71,7 @@ public:
         this->y=p.y;
         this->z=p.z;
     }
-    /**Przeciązenie operatora dodawnia
+    /**Przeciążenie operatora dodawnia
     *
     * @param p obiekt dodawny
     * @return obiekt do którego została dodana wartość

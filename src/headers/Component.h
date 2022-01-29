@@ -7,18 +7,18 @@
 #include "Engine.h"
 class Engine;
 /**
- *@class Componnet Klasa abstrakcyjna dostaraczjąca metod wywoływanych w głównej pętli programu
+ *@class Component Klasa abstrakcyjna dostarczająca metod wywoływanych w głównej pętli programu
  */
 class Component{
 public:
     /**Metoda wywoływana co każdą iteracje pętli
      *
-     * @param engine wskażnik na obiekt silnik
+     * @param engine wskaźnik na obiekt silnik
      */
     void virtual run(Engine *engine){};
-    /**Metoda służaca do ustawienia parametrów komponnentu
+    /**Metoda służaca do ustawienia parametrów komponentu
      *
-     * @param engine  wskażnik na obiekt silnik
+     * @param engine  wskaźnik na obiekt silnik
      */
     void virtual setUp(Engine *engine){};
 };

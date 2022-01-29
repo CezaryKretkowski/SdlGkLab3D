@@ -7,24 +7,24 @@
 
 #include "../Point3D.h"
 /**
- * @class RenderableObject kalsa abstrakcyjna dostarczająca metod do rysowania oraz wykonywania transformacji
+ * @class RenderableObject klasa abstrakcyjna dostarczająca metod do rysowania oraz wykonywania transformacji
  */
 class RenderableObject{
 public:
-    ///Metoda słuząca do rysowania
+    ///Metoda służąca do rysowania
     virtual void draw(){};
-    /**Metoda słuząca do wykonia przesunięcai
+    /**Metoda służąca do wykonania przesunięcia
      *
      * @param p wektor przesunięcia
      */
     virtual void translate(Point3D p){};
-    /**Metoda słuząca do rotacji
+    /**Metoda służąca do rotacji
     *
     * @param p oś obrotu
     * @param angle kąta
     */
     virtual void rotate(Point3D p,float angle){};
-    /**Metoda słuząca wykonwyania jednokładności
+    /**Metoda służąca wykonywania jednokładności
     *
     * @param p wektor
     */
