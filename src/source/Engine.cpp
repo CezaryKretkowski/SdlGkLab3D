@@ -151,18 +151,7 @@ void Engine::clear() {
     glFinish();    // or glFlush();
 }
 
-void Engine::changeObservatorPos() {
 
-    glRotatef(lookAngle, 1.0, -0.5, 0.0);
-//    glm::mat4 MatM = glm::translate(glm::vec3(0, 0, -300));
-//    glm::rotate(MatM, glm::radians(lookAngle), glm::vec3(1, 0, 0));
-//    MatM = glm::rotate(MatM, glm::radians(0.f), glm::vec3(0, 1, 0));
-//    // 120 deg rotation:
-//    glm::mat4 MatRot120 = glm::rotate(glm::radians(120.0f), glm::vec3(0, 1, 0));
-//    // Translation +100 on X axis:
-//    glm::mat4 MatTra100 = glm::translate(glm::vec3(100, 0, 0));
-
-}
 
 void Engine::add(Component *componnet) {
     components.push_front(componnet);
