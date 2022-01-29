@@ -9,40 +9,40 @@
 #include "../Point3D.h"
 #include "../Color.h"
 /**
- * @class PrimitiveRender klasa słuząca do rysowania obiektów dwó wymiarowych
+ * @class PrimitiveRender klasa służąca do rysowania obiektów dwuwymiarowych
  */
 class PrimitiveRender{
 public:
     /** Metoda rysująca punkt
      *
-     * @param p współżędne punktu
+     * @param p współrzędne punktu
      * @param color kolor punktu
      */
     void drawPoint(Point3D p,Color color);
     /**Metoda rysująca linie
      *
-     * @param p1 współżędne pierwszego punktu
-     * @param p2 współżędne drugiego punktu
+     * @param p1 współrzędne pierwszego punktu
+     * @param p2 współrzędne drugiego punktu
      * @param color kolor lini
      */
     void drawLine(Point3D p1,Point3D p2,Color color);
     /**Metoda rysująca segment lini
      *
-     * @param vertexList lista współżęnych
+     * @param vertexList lista współrzęnych
      * @param color kolor lini
      */
     void drawLineSegment(std::list<Point3D> vertexList,Color color);
-    /** Metoda rysująca zamgnięta linie
+    /** Metoda rysująca zamknięta linie
      *
-     * @param vertexList lista współżęnych
+     * @param vertexList lista współrzęnych
      * @param color kolor  lini
      */
     void drawLineCloseSegment(std::list<Point3D> vertexList,Color color);
-    /**Metoda rysująca trujkąt
+    /**Metoda rysująca trójkąt
      *
-     * @param p1 współżędne pierwszego punktu
-     * @param p2 współżędne drugiego punktu
-     * @param p3 współżędne trzeciego punktu
+     * @param p1 współrzędne pierwszego punktu
+     * @param p2 współrzędne drugiego punktu
+     * @param p3 współrzędne trzeciego punktu
      * @param color kolor trójkąta
      */
     void drawTriangle(Point3D p1,Point3D p2,Point3D p3,Color color);

@@ -9,38 +9,38 @@
  */
 class Color{
 private:
-    ///Tablica reprezętujące wartości rgb kolorów
+    ///Tablica reprezętująca wartości rgb kolorów
     float RGB[3];
 public:
-    /**Kostruktor kalsy Color
+    /**Kostruktor klasy Color
      *
-     * @param r wartosć koloru czerwonego
-     * @param g wartosć koloru niebieskiego
-     * @param b wartosć koloru zielonego
+     * @param r wartość koloru czerwonego
+     * @param g wartość koloru niebieskiego
+     * @param b wartość koloru zielonego
      */
     Color(float r=0,float g=0,float b=0){
         RGB[0]=r;
         RGB[1]=g;
         RGB[2]=b;
     }
-    /**Zwraca wskażnika na tablice zawierające składowe kolru
+    /**Zwraca wskaźnik na tablice zawierające składowe koloru
      *
-     * @return wskażnik na tablice rgb
+     * @return wskaźnik na tablice rgb
      */
     float* getRGB(){return RGB;}
     /**Zwraca wartość składowej koloru (czerowny)
      *
-     * @return wartosć koloru czerwonego
+     * @return wartość koloru czerwonego
      */
     float getR(){return RGB[0];}
     /**Zwraca wartość składowej koloru (Zielony)
      *
-     * @return wartosć koloru zielonego
+     * @return wartość koloru zielonego
      */
     float getG(){return RGB[1];}
     /**Zwraca wartość składowej koloru (Niebieski)
      *
-     * @return wartosć koloru niebisekiego
+     * @return wartość koloru niebieskiego
      */
     float getB(){return RGB[2];}
     /**Przeciążenie operatora przypisania
@@ -55,7 +55,7 @@ public:
     }
     /**Przeciążenie operatora przypisania
      *
-     * @param c zmienna typu fląt którą będą wypełniane wszystkie elmenty tablicy
+     * @param c zmienna typu float którą będą wypełniane wszystkie elementy tablicy
      * @return obiekt do którego przypisujemy
      */
     Color operator=(float c){

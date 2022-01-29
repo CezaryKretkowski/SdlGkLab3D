@@ -10,13 +10,13 @@
 #include <stdint.h>
 #include <assert.h>
 /**
- * @class KeyListener Klasa abstrakcyjna dostarczająca wirtyualnych metod do obsługi klawiatury
+ * @class KeyListener Klasa abstrakcyjna dostarczająca wirtualnych metod do obsługi klawiatury
  */
 class KeyListener{
 public :
-    /**Metoda wywoływana w głownej pętli gry w momencie wykrecia akcji na klawiaturze
+    /**Metoda wywoływana w głównej pętli gry w momencie wykrycia akcji na klawiaturze
      *
-     * @param e Obiekt reprezętujący zdażenie
+     * @param e Obiekt reprezętujący zdarzenie
      */
     virtual void onKeyPressedDown(SDL_Event e){
         if (e.key.keysym.sym == ' ')

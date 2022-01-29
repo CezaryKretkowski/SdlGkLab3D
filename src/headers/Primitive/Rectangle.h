@@ -10,7 +10,7 @@
 #include <SDL2/SDL_opengl.h>
 namespace Primitive {
     /**
-     * @class Rectangle Kalas repezętująca kostkę.
+     * @class Rectangle Klasa reprezętująca kostkę
      */
     class Rectangle : public RenderableObject {
         ///Tablica wierzchołków
@@ -23,42 +23,42 @@ namespace Primitive {
         float depth;
         ///Tablica reprezętująca kolor kostki
         float color[3];
-        ///Metoda słuząca do obliczenia współżednych na podstawie ,wysokości, szerokości ,głębokości i punktu starowego
+        ///Metoda służąca do obliczenia współrzędnych na podstawie, wysokości, szerokości, głębokości i punktu startowego
         void calculateVertex();
 
     public:
-        /***Kostruktor kalsy rectangle
+        /***Kostruktor klasy Rectangle
          *
          * @param width szerokość
          * @param height wysokość
          * @param depth głębokość
-         * @param point punkt starowy
+         * @param point punkt startowy
          * @param c kolor
          */
         Rectangle(float width = 0, float height = 0, float depth = 0, Point3D point = 0,Color c=0.f);
-        /***Ustawijąca wszytkie kluczowe parametry kostki
+        /***Ustawiająca wszystkie kluczowe parametry kostki
         *
         * @param width szerokość
         * @param height wysokość
         * @param depth głębokość
-        * @param point punkt starowy
+        * @param point punkt startowy
         * @param c kolor
         */
         void createRectangle(float width = 0, float height = 0, float depth = 0, Point3D point = 0,Color c=0.f);
-        ///Metoda napisywana słuząca do rysowania kostki
+        ///Metoda napisywana służąca do rysowania kostki
         void draw();
         /**Metoda napisywana wykonwyanie jednokładności
          *
          * @param p wektor
          */
         void scale(Point3D p);
-        /**Metoda naspiywana słuząca do rotacji
+        /**Metoda napisywana służąca do rotacji
          *
          * @param p oś obrotu
          * @param angle kąta
          */
         void rotate(Point3D p,float angle);
-        /**Metoda napisywana słuząca do wykonia przesunięcai
+        /**Metoda napisywana służąca do wykonania przesunięcia
          *
          * @param p wektor przesunięcia
          */
